@@ -118,7 +118,7 @@ func New(debug bool) WebView { return NewWindow(debug, nil) }
 // here. Returns nil on failure. Creation can fail for various reasons such as when
 // required runtime dependencies are missing or when window creation fails.
 func NewWindow(debug bool, window unsafe.Pointer) WebView {
-	return nil
+	return &webview{w: nil}
 }
 
 func (w *webview) Destroy() {
