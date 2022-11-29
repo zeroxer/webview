@@ -10,5 +10,10 @@ jobs:
         run: echo PATH=%ProgramData%\chocolatey\lib\mingw\tools\install\mingw64\bin;%PATH%>>%GITHUB_ENV%
         shell: cmd
       - name: Build and run tests
-        run: ./script/build.bat
+        run: script\build.bat
+        shell: cmd
+      - name: Run example
+        run: |
+          copy examples\WinSparkle.dll build\examples\go
+          cd build\examples\go && issue857.exe
         shell: cmd
