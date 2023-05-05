@@ -717,7 +717,7 @@ inline id operator"" _str(const char *s, std::size_t) {
 
 class cocoa_wkwebview_engine {
 public:
-  cocoa_wkwebview_engine(bool debug, void *window)
+  cocoa_wkwebview_engine(bool debug, void *window, int width, int height)
       : m_debug{debug}, m_parent_window{window} {
     auto app = get_shared_application();
     auto delegate = create_app_delegate();
