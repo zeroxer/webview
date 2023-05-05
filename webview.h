@@ -1834,7 +1834,7 @@ private:
 
 class win32_edge_engine {
 public:
-  win32_edge_engine(bool debug, void *window) {
+  win32_edge_engine(bool debug, void *window, int width, int height) {
     if (!is_webview2_available()) {
       return;
     }
@@ -1887,8 +1887,8 @@ public:
           });
       RegisterClassExW(&wc);
       m_window = CreateWindowW(L"webview", L"", WS_OVERLAPPEDWINDOW,
-                               CW_USEDEFAULT, CW_USEDEFAULT, 640, 480, nullptr,
-                               nullptr, hInstance, nullptr);
+                               CW_USEDEFAULT, CW_USEDEFAULT, width, height,
+                               nullptr, nullptr, hInstance, nullptr);
       if (m_window == nullptr) {
         return;
       }
@@ -2112,8 +2112,9 @@ namespace webview {
 
 class webview : public browser_engine {
 public:
-  webview(bool debug = false, void *wnd = nullptr)
-      : browser_engine(debug, wnd) {}
+  webview(bool debug = false, void *wnd = nullptr, int width = 480,
+          int height = 640)
+      : browser_engine(debug, wnd, width, height) {}
 
   void navigate(const std::string &url) {
     if (url.empty()) {
