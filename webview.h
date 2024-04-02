@@ -513,8 +513,12 @@ namespace detail {
 
 class gtk_webkit_engine {
 public:
-  gtk_webkit_engine(bool debug, void *window)
+  gtk_webkit_engine(bool debug, void *window, int width, int height)
       : m_window(static_cast<GtkWidget *>(window)) {
+
+    (void)width;
+    (void)height;
+
     if (gtk_init_check(nullptr, nullptr) == FALSE) {
       return;
     }
